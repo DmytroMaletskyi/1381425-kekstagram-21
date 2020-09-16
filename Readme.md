@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
-* Студент: [Дмитрий Малецкий](https://up.htmlacademy.ru/javascript/21/user/1381425).
-* Наставник: `Неизвестно`.
+- Студент: [Дмитрий Малецкий](https://up.htmlacademy.ru/javascript/21/user/1381425).
+- Наставник: [Максим Деев](https://htmlacademy.ru/profile/id685777).
 
 ---
 

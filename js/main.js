@@ -7,7 +7,7 @@ const body = document.querySelector(`body`);
 const pictureTemplate = document.querySelector(`#picture`).content.querySelector(`.picture`);
 const picturesListElement = document.querySelector(`.pictures`);
 
-// fullSizePicture
+// Full size picture elements
 const pictureDetailsElement = document.querySelector(`.big-picture`);
 const bigPictureElement = pictureDetailsElement.querySelector(`.big-picture__img img`);
 const fullSizeLikesCounter = pictureDetailsElement.querySelector(`.likes-count`);
@@ -71,7 +71,6 @@ const renderPictureElement = (picture) => {
 const renderPicturesList = (picturesList) => {
   const fragment = document.createDocumentFragment();
 
-  // for (let i = 0; i < picturesList.length; i++) {
   for (let picture of picturesList) {
     fragment.appendChild(renderPictureElement(picture));
   }

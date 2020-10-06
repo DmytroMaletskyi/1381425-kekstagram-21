@@ -42,5 +42,5 @@
 
   window.data = {
     createPicturesList
-  }
+  };
 })();

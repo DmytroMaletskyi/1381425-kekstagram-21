@@ -9,10 +9,10 @@
   const fullSizePictureCaption = pictureDetailsElement.querySelector(`.social__caption`);
 
   const cleanCommentsList = () => {
-      while (fullSizeCommentsList.firstChild) {
-        fullSizeCommentsList.removeChild(fullSizeCommentsList.firstChild);
-      }
-    };
+    while (fullSizeCommentsList.firstChild) {
+      fullSizeCommentsList.removeChild(fullSizeCommentsList.firstChild);
+    }
+  };
 
   const renderPictureComment = (comment) => {
     const commentElement = document.createElement(`li`);

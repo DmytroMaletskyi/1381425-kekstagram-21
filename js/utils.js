@@ -8,5 +8,5 @@
   window.utils = {
     getRandomIndex,
     getRandomInt
-  }
+  };
 })();

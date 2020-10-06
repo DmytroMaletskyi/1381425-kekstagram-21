@@ -15,5 +15,5 @@
 
   window.gallery = {
     renderPicturesList
-  }
+  };
 })();

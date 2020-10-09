@@ -33,6 +33,7 @@
   const effectLevelPinElement = effectLevelSliderElement.querySelector(`.effect-level__pin`);
   const effectLevelDepthElement = effectLevelSliderElement.querySelector(`.effect-level__depth`);
   const hashTagInputElement = imageEditorElement.querySelector(`.text__hashtags`);
+  const commentsFieldElement = imageEditorElement.querySelector(`.text__description`);
 
   const loadModalOpenHandler = (evt) => {
     imageEditorElement.classList.remove(`hidden`);
@@ -180,7 +181,7 @@
   const modalEscapeHandler = (evt) => {
     if (evt.key === `Escape`) {
       evt.preventDefault();
-      if (hashTagInputElement !== document.activeElement) {
+      if (hashTagInputElement !== document.activeElement && commentsFieldElement !== document.activeElement) {
         loadModalCloseHandler();
       }
     }

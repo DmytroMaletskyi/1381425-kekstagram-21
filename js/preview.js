@@ -1,7 +1,9 @@
 'use strict';
 
 (() => {
+  const body = document.querySelector(`body`);
   const pictureDetailsElement = document.querySelector(`.big-picture`);
+  const bigPictureCancelButton = pictureDetailsElement.querySelector(`.big-picture__cancel`);
   const bigPictureElement = pictureDetailsElement.querySelector(`.big-picture__img img`);
   const fullSizeLikesCounter = pictureDetailsElement.querySelector(`.likes-count`);
   const fullSizeCommentsCounter = pictureDetailsElement.querySelector(`.comments-count`);
@@ -54,7 +56,33 @@
     fullSizePictureCaption.textContent = picture.description;
   };
 
+  const closePreviewWindow = () => {
+    body.classList.remove(`modal-open`);
+    pictureDetailsElement.classList.add(`hidden`);
+
+    bigPictureCancelButton.removeEventListener(`click`, closePreviewWindow);
+    document.removeEventListener(`keydown`, previewEscapeHandler);
+  };
+
+  const previewEscapeHandler = (evt) => {
+    if (evt.key === `Escape`) {
+      evt.preventDefault();
+      closePreviewWindow();
+    }
+  };
+
+  const onPreviewClickHandler = (picture) => {
+    renderPictureDetailsElement(picture);
+    body.classList.add(`modal-open`);
+    pictureDetailsElement.classList.remove(`hidden`);
+
+    bigPictureCancelButton.addEventListener(`click`, closePreviewWindow);
+    document.addEventListener(`keydown`, previewEscapeHandler);
+  };
+
   window.preview = {
-    renderPictureDetailsElement
+    renderPictureDetailsElement,
+
+    onPreviewClickHandler
   };
 })();

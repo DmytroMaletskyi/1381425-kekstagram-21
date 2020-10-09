@@ -2,8 +2,8 @@
 
 // const body = document.querySelector(`body`);
 
-const picturesList = window.data.createPicturesList(25);
-window.gallery.renderPicturesList(picturesList);
+window.backend.loadPhotos(window.gallery.renderPicturesList, window.alert.renderAlert);
+
 
 // Дополнительное задание
 /* pictureDetailsElement.classList.remove(`hidden`);

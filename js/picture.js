@@ -10,6 +10,8 @@
     pictureElement.querySelector(`.picture__likes`).textContent = picture.likes;
     pictureElement.querySelector(`.picture__comments`).textContent = picture.comments.length;
 
+    pictureElement.addEventListener(`click`, window.preview.onPreviewClickHandler.bind(null, picture));
+
     return pictureElement;
   };
 

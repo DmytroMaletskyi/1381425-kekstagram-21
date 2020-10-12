@@ -28,7 +28,6 @@
   const effectsListElement = imageEditorElement.querySelector(`.effects__list`);
   const originalEffectElement = effectsListElement.querySelector(`#effect-none`);
   const effectLevelSliderElement = imageEditorElement.querySelector(`.img-upload__effect-level`);
-  const effectLevelBarElement = effectLevelSliderElement.querySelector(`.effect-level__line`);
   const effectLevelInputElement = effectLevelSliderElement.querySelector(`.effect-level__value`);
   const effectLevelPinElement = effectLevelSliderElement.querySelector(`.effect-level__pin`);
   const effectLevelDepthElement = effectLevelSliderElement.querySelector(`.effect-level__depth`);
@@ -50,7 +49,7 @@
     scaleDecreaseButtonElement.addEventListener(`click`, scaleDecreaseClickHandler);
     scaleIncreaseButtonElement.addEventListener(`click`, scaleIncreaseClickHandler);
     effectsListElement.addEventListener(`change`, effectsListClickHandler);
-    effectLevelPinElement.addEventListener(`mouseup`, effectPinMoveHandler);
+    effectLevelPinElement.addEventListener(`mousedown`, window.slider.pinMouseDownHandler);
     hashTagInputElement.addEventListener(`input`, hashTagInputHandler);
     document.addEventListener(`keydown`, modalEscapeHandler);
   };
@@ -65,7 +64,7 @@
     scaleDecreaseButtonElement.removeEventListener(`click`, scaleDecreaseClickHandler);
     scaleIncreaseButtonElement.removeEventListener(`click`, scaleIncreaseClickHandler);
     effectsListElement.removeEventListener(`change`, effectsListClickHandler);
-    effectLevelPinElement.removeEventListener(`mouseup`, effectPinMoveHandler);
+    effectLevelPinElement.removeEventListener(`mousedown`, window.slider.pinMouseDownHandler);
     hashTagInputElement.removeEventListener(`input`, hashTagInputHandler);
     document.removeEventListener(`keydown`, modalEscapeHandler);
   };
@@ -94,20 +93,6 @@
     effectLevelPinElement.style.left = `${level}%`;
     effectLevelDepthElement.style.width = `${level}%`;
     imagePreviewElement.style.filter = EFFECTS[currentEffect](level);
-  };
-
-  const calculatePinPosition = (horizontalCoordinate) => {
-    return ((horizontalCoordinate - effectLevelBarElement.offsetWidth) * 100 / effectLevelBarElement.offsetWidth).toFixed(0);
-  };
-
-  const effectPinMoveHandler = (evt) => {
-    effectLevel = calculatePinPosition(evt.clientX);
-    if (effectLevel > 100) {
-      effectLevel = 100;
-    } else if (effectLevel < 0) {
-      effectLevel = 0;
-    }
-    setEffectLevel(effectLevel);
   };
 
   const resetPreviewEffectClasses = () => {
@@ -185,6 +170,10 @@
         loadModalCloseHandler();
       }
     }
+  };
+
+  window.form = {
+    setEffectLevel
   };
 
   imageLoaderElement.addEventListener(`change`, loadModalOpenHandler);

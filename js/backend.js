@@ -58,7 +58,21 @@
     xhr.send();
   };
 
+  const uploadPhoto = (data, successHandler, errorHandler) => {
+    const URL = `https://21.javascript.pages.academy/kekstagram`;
+
+    const xhr = new XMLHttpRequest();
+
+    handleRequest(xhr, successHandler, errorHandler, TIMEOUT);
+
+    xhr.open(`POST`, URL);
+
+    xhr.send(data);
+  };
+
   window.backend = {
-    loadPhotos
+    loadPhotos,
+
+    uploadPhoto
   };
 })();

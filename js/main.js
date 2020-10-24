@@ -1,14 +1,15 @@
 'use strict';
 
-// const body = document.querySelector(`body`);
+const filtersElement = document.querySelector(`.img-filters`);
+const filtersFormElement = filtersElement.querySelector(`.img-filters__form`);
 
-window.backend.loadPhotos(window.gallery.renderPicturesList, window.alert.renderAlert);
 
+const successLoadHandler = (data) => {
+  window.loadedData = data;
+  window.gallery.renderPicturesList(data);
+  filtersFormElement.addEventListener(`click`, window.filters.filtersClickHandler);
+  filtersElement.classList.remove(`img-filters--inactive`);
+};
 
-// Дополнительное задание
-/* pictureDetailsElement.classList.remove(`hidden`);
-window.preview.renderPictureDetailsElement(picturesList[0]);
-displayedCommentsCounter.classList.add(`hidden`);
-commentsLoader.classList.add(`hidden`);
-body.classList.add(`modal-open`); */
+window.backend.loadPhotos(successLoadHandler, window.alert.renderAlert);
 

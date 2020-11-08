@@ -177,7 +177,10 @@ const checkHashTagsDuplication = (hashTags) => {
 const hashTagInputHandler = () => {
   const hashTags = hashTagInputElement.value.split(` `);
 
-  if (!checkHashTagsAmount(hashTags)) {
+  if (hashTagInputElement.value.length === 0) {
+    hashTagInputElement.setCustomValidity(``);
+    window.utils.resetElementStyles(hashTagInputElement);
+  } else if (!checkHashTagsAmount(hashTags)) {
     hashTagInputElement.setCustomValidity(`Количество хэштегов не должно превышать ${HASH_TAG_MAX}. Пожалуйста, удалите ${hashTags.length - HASH_TAG_MAX}`);
     window.utils.higlightElement(hashTagInputElement, OUTLINE_COLOR);
   } else if (!checkHashTagsValidity(hashTags)) {
@@ -188,6 +191,7 @@ const hashTagInputHandler = () => {
     window.utils.higlightElement(hashTagInputElement, OUTLINE_COLOR);
   } else {
     hashTagInputElement.setCustomValidity(``);
+    window.utils.resetElementStyles(hashTagInputElement);
   }
 
   hashTagInputElement.reportValidity();

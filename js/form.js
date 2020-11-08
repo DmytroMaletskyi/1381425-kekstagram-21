@@ -83,7 +83,7 @@ const loadModalCloseHandler = () => {
   imageEditorElement.classList.add(`hidden`);
   body.classList.remove(`modal-open`);
 
-  imageLoaderElement.value = ``;
+  imageUploadFormElement.reset();
   window.utils.resetElementStyles(hashTagInputElement);
 
   loaderCloseButtonElement.removeEventListener(`click`, loadModalCloseHandler);

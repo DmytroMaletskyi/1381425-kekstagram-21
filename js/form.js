@@ -1,5 +1,6 @@
 'use strict';
 
+const FILE_TYPES = [`gif`, `jpg`, `jpeg`, `png`];
 const OUTLINE_COLOR = `rgba(255, 0, 0, .5)`;
 const DEFAULT_SCALE = 100;
 const DEFAULT_EFFECT_LEVEL = 100;
@@ -35,25 +36,47 @@ const effectLevelDepthElement = effectLevelSliderElement.querySelector(`.effect-
 const hashTagInputElement = imageEditorElement.querySelector(`.text__hashtags`);
 const commentsFieldElement = imageEditorElement.querySelector(`.text__description`);
 
+const checkLoadedFile = (file) => {
+  const fileName = file.name.toLowerCase();
+
+  return FILE_TYPES.some((it) => fileName.endsWith(it));
+};
+
+const setPhotoPreview = (file) => {
+  const reader = new FileReader();
+
+  reader.addEventListener(`load`, () => {
+    imagePreviewElement.src = reader.result;
+  });
+
+  reader.readAsDataURL(file);
+};
+
 const loadModalOpenHandler = (evt) => {
-  imageEditorElement.classList.remove(`hidden`);
-  body.classList.add(`modal-open`);
+  const file = evt.target.files[0];
+  if (checkLoadedFile(file)) {
+    imageEditorElement.classList.remove(`hidden`);
+    body.classList.add(`modal-open`);
+    setPhotoPreview(file);
 
-  scaleValue = DEFAULT_SCALE;
-  setScale(scaleValue);
-  imagePreviewElement.src = URL.createObjectURL(evt.target.files[0]);
-  effectLevelSliderElement.classList.add(`hidden`);
-  originalEffectElement.checked = true;
-  resetPreviewEffectClasses();
+    scaleValue = DEFAULT_SCALE;
+    setScale(scaleValue);
+    effectLevelSliderElement.classList.add(`hidden`);
+    originalEffectElement.checked = true;
+    resetPreviewEffectClasses();
 
-  loaderCloseButtonElement.addEventListener(`click`, loadModalCloseHandler);
-  scaleDecreaseButtonElement.addEventListener(`click`, scaleDecreaseClickHandler);
-  scaleIncreaseButtonElement.addEventListener(`click`, scaleIncreaseClickHandler);
-  effectsListElement.addEventListener(`change`, effectsListClickHandler);
-  effectLevelPinElement.addEventListener(`mousedown`, window.slider.pinMouseDownHandler);
-  hashTagInputElement.addEventListener(`input`, hashTagInputHandler);
-  imageUploadFormElement.addEventListener(`submit`, imageSubmitHandler);
-  document.addEventListener(`keydown`, modalEscapeHandler);
+    loaderCloseButtonElement.addEventListener(`click`, loadModalCloseHandler);
+    scaleDecreaseButtonElement.addEventListener(`click`, scaleDecreaseClickHandler);
+    scaleIncreaseButtonElement.addEventListener(`click`, scaleIncreaseClickHandler);
+    effectsListElement.addEventListener(`change`, effectsListClickHandler);
+    effectLevelPinElement.addEventListener(`mousedown`, window.slider.pinMouseDownHandler);
+    hashTagInputElement.addEventListener(`input`, hashTagInputHandler);
+    imageUploadFormElement.addEventListener(`submit`, imageSubmitHandler);
+    document.addEventListener(`keydown`, modalEscapeHandler);
+  } else {
+    window.alert.renderAlert(`Неправильный формат изображения!`);
+    imageUploadFormElement.reset();
+  }
 };
 
 const loadModalCloseHandler = () => {

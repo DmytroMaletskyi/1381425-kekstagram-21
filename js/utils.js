@@ -26,12 +26,17 @@
     element.style = null;
   };
 
+  const removeAllEventListeners = (element) => {
+    element.replaceWith(element.cloneNode(true));
+  };
+
   window.utils = {
     getRandomIndex,
     getRandomInt,
     isEscapeEvent,
     isElementOutclicked,
     higlightElement,
-    resetElementStyles
+    resetElementStyles,
+    removeAllEventListeners
   };
 })();

@@ -18,7 +18,7 @@ let scaleValue = DEFAULT_SCALE;
 let effectLevel = DEFAULT_EFFECT_LEVEL;
 let currentEffect = ``;
 
-const body = document.querySelector(`body`);
+const bodyElement = document.querySelector(`body`);
 const imageUploadFormElement = document.querySelector(`.img-upload__form`);
 const imageLoaderElement = imageUploadFormElement.querySelector(`#upload-file`);
 const loaderCloseButtonElement = imageUploadFormElement.querySelector(`#upload-cancel`);
@@ -56,7 +56,7 @@ const loadModalOpenHandler = (evt) => {
   const file = evt.target.files[0];
   if (checkLoadedFile(file)) {
     imageEditorElement.classList.remove(`hidden`);
-    body.classList.add(`modal-open`);
+    bodyElement.classList.add(`modal-open`);
     setPhotoPreview(file);
 
     scaleValue = DEFAULT_SCALE;
@@ -81,7 +81,7 @@ const loadModalOpenHandler = (evt) => {
 
 const loadModalCloseHandler = () => {
   imageEditorElement.classList.add(`hidden`);
-  body.classList.remove(`modal-open`);
+  bodyElement.classList.remove(`modal-open`);
 
   imageUploadFormElement.reset();
   window.utils.resetElementStyles(hashTagInputElement);

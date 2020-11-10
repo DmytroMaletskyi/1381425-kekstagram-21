@@ -2,18 +2,18 @@
 
 const body = document.querySelector(`body`);
 const pictureDetailsElement = document.querySelector(`.big-picture`);
-const bigPictureCancelButton = pictureDetailsElement.querySelector(`.big-picture__cancel`);
+const bigPictureCancelButtonElement = pictureDetailsElement.querySelector(`.big-picture__cancel`);
 const bigPictureElement = pictureDetailsElement.querySelector(`.big-picture__img img`);
-const fullSizeLikesCounter = pictureDetailsElement.querySelector(`.likes-count`);
-const fullSizeCommentsCounter = pictureDetailsElement.querySelector(`.comments-count`);
+const fullSizeLikesCounterElement = pictureDetailsElement.querySelector(`.likes-count`);
+const fullSizeCommentsCounterElement = pictureDetailsElement.querySelector(`.comments-count`);
 const fullSizeDisplayedCommentsCounterElement = pictureDetailsElement.querySelector(`.displayed-comments`);
-const fullSizeCommentsList = pictureDetailsElement.querySelector(`.social__comments`);
-const fullSizePictureCaption = pictureDetailsElement.querySelector(`.social__caption`);
+const fullSizeCommentsListElement = pictureDetailsElement.querySelector(`.social__comments`);
+const fullSizePictureCaptionElement = pictureDetailsElement.querySelector(`.social__caption`);
 let commentsLoaderButtonElement = pictureDetailsElement.querySelector(`.comments-loader`);
 
 const cleanCommentsList = () => {
-  while (fullSizeCommentsList.firstChild) {
-    fullSizeCommentsList.removeChild(fullSizeCommentsList.firstChild);
+  while (fullSizeCommentsListElement.firstChild) {
+    fullSizeCommentsListElement.removeChild(fullSizeCommentsListElement.firstChild);
   }
 };
 
@@ -39,7 +39,7 @@ const renderPictureComment = (comment) => {
 };
 
 const setDisplayedCommentsAmount = () => {
-  fullSizeDisplayedCommentsCounterElement.textContent = fullSizeCommentsList.children.length;
+  fullSizeDisplayedCommentsCounterElement.textContent = fullSizeCommentsListElement.children.length;
 };
 
 const appendMoreComments = (commentsList) => {
@@ -56,7 +56,7 @@ const appendMoreComments = (commentsList) => {
     }
   }
 
-  fullSizeCommentsList.appendChild(fragment);
+  fullSizeCommentsListElement.appendChild(fragment);
   setDisplayedCommentsAmount();
 };
 
@@ -81,17 +81,17 @@ const renderCommentsList = (commentsList) => {
 const renderPictureDetailsElement = (picture) => {
   picture.notDisplayedComments = JSON.parse(JSON.stringify(picture.comments));
   bigPictureElement.src = picture.url;
-  fullSizeLikesCounter.textContent = picture.likes;
-  fullSizeCommentsCounter.textContent = picture.comments.length;
+  fullSizeLikesCounterElement.textContent = picture.likes;
+  fullSizeCommentsCounterElement.textContent = picture.comments.length;
   renderCommentsList(picture.notDisplayedComments);
-  fullSizePictureCaption.textContent = picture.description;
+  fullSizePictureCaptionElement.textContent = picture.description;
 };
 
 const closePreviewWindow = () => {
   body.classList.remove(`modal-open`);
   pictureDetailsElement.classList.add(`hidden`);
 
-  bigPictureCancelButton.removeEventListener(`click`, closePreviewWindow);
+  bigPictureCancelButtonElement.removeEventListener(`click`, closePreviewWindow);
   document.removeEventListener(`keydown`, previewEscapeHandler);
 };
 
@@ -107,7 +107,7 @@ const onPreviewClickHandler = (picture) => {
   body.classList.add(`modal-open`);
   pictureDetailsElement.classList.remove(`hidden`);
 
-  bigPictureCancelButton.addEventListener(`click`, closePreviewWindow);
+  bigPictureCancelButtonElement.addEventListener(`click`, closePreviewWindow);
   document.addEventListener(`keydown`, previewEscapeHandler);
 };
 

@@ -19,6 +19,10 @@ const renderAlert = (text) => {
 
   alertElement.appendChild(alertText);
   main.appendChild(alertElement);
+
+  setTimeout(() => {
+    main.removeChild(alertElement);
+  }, 5000);
 };
 
 const successButtonClickHandler = () => {

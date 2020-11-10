@@ -1,5 +1,6 @@
 'use strict';
 
+const FILE_TYPES = [`gif`, `jpg`, `jpeg`, `png`];
 const OUTLINE_COLOR = `rgba(255, 0, 0, .5)`;
 const DEFAULT_SCALE = 100;
 const DEFAULT_EFFECT_LEVEL = 100;
@@ -17,7 +18,7 @@ let scaleValue = DEFAULT_SCALE;
 let effectLevel = DEFAULT_EFFECT_LEVEL;
 let currentEffect = ``;
 
-const body = document.querySelector(`body`);
+const bodyElement = document.querySelector(`body`);
 const imageUploadFormElement = document.querySelector(`.img-upload__form`);
 const imageLoaderElement = imageUploadFormElement.querySelector(`#upload-file`);
 const loaderCloseButtonElement = imageUploadFormElement.querySelector(`#upload-cancel`);
@@ -35,32 +36,54 @@ const effectLevelDepthElement = effectLevelSliderElement.querySelector(`.effect-
 const hashTagInputElement = imageEditorElement.querySelector(`.text__hashtags`);
 const commentsFieldElement = imageEditorElement.querySelector(`.text__description`);
 
+const checkLoadedFile = (file) => {
+  const fileName = file.name.toLowerCase();
+
+  return FILE_TYPES.some((it) => fileName.endsWith(it));
+};
+
+const setPhotoPreview = (file) => {
+  const reader = new FileReader();
+
+  reader.addEventListener(`load`, () => {
+    imagePreviewElement.src = reader.result;
+  });
+
+  reader.readAsDataURL(file);
+};
+
 const loadModalOpenHandler = (evt) => {
-  imageEditorElement.classList.remove(`hidden`);
-  body.classList.add(`modal-open`);
+  const file = evt.target.files[0];
+  if (checkLoadedFile(file)) {
+    imageEditorElement.classList.remove(`hidden`);
+    bodyElement.classList.add(`modal-open`);
+    setPhotoPreview(file);
 
-  scaleValue = DEFAULT_SCALE;
-  setScale(scaleValue);
-  imagePreviewElement.src = URL.createObjectURL(evt.target.files[0]);
-  effectLevelSliderElement.classList.add(`hidden`);
-  originalEffectElement.checked = true;
-  resetPreviewEffectClasses();
+    scaleValue = DEFAULT_SCALE;
+    setScale(scaleValue);
+    effectLevelSliderElement.classList.add(`hidden`);
+    originalEffectElement.checked = true;
+    resetPreviewEffectClasses();
 
-  loaderCloseButtonElement.addEventListener(`click`, loadModalCloseHandler);
-  scaleDecreaseButtonElement.addEventListener(`click`, scaleDecreaseClickHandler);
-  scaleIncreaseButtonElement.addEventListener(`click`, scaleIncreaseClickHandler);
-  effectsListElement.addEventListener(`change`, effectsListClickHandler);
-  effectLevelPinElement.addEventListener(`mousedown`, window.slider.pinMouseDownHandler);
-  hashTagInputElement.addEventListener(`input`, hashTagInputHandler);
-  imageUploadFormElement.addEventListener(`submit`, imageSubmitHandler);
-  document.addEventListener(`keydown`, modalEscapeHandler);
+    loaderCloseButtonElement.addEventListener(`click`, loadModalCloseHandler);
+    scaleDecreaseButtonElement.addEventListener(`click`, scaleDecreaseClickHandler);
+    scaleIncreaseButtonElement.addEventListener(`click`, scaleIncreaseClickHandler);
+    effectsListElement.addEventListener(`change`, effectsListClickHandler);
+    effectLevelPinElement.addEventListener(`mousedown`, window.slider.pinMouseDownHandler);
+    hashTagInputElement.addEventListener(`input`, hashTagInputHandler);
+    imageUploadFormElement.addEventListener(`submit`, imageSubmitHandler);
+    document.addEventListener(`keydown`, modalEscapeHandler);
+  } else {
+    window.alert.renderAlert(`Неправильный формат изображения!`);
+    imageUploadFormElement.reset();
+  }
 };
 
 const loadModalCloseHandler = () => {
   imageEditorElement.classList.add(`hidden`);
-  body.classList.remove(`modal-open`);
+  bodyElement.classList.remove(`modal-open`);
 
-  imageLoaderElement.value = ``;
+  imageUploadFormElement.reset();
   window.utils.resetElementStyles(hashTagInputElement);
 
   loaderCloseButtonElement.removeEventListener(`click`, loadModalCloseHandler);
@@ -154,7 +177,10 @@ const checkHashTagsDuplication = (hashTags) => {
 const hashTagInputHandler = () => {
   const hashTags = hashTagInputElement.value.split(` `);
 
-  if (!checkHashTagsAmount(hashTags)) {
+  if (hashTagInputElement.value.length === 0) {
+    hashTagInputElement.setCustomValidity(``);
+    window.utils.resetElementStyles(hashTagInputElement);
+  } else if (!checkHashTagsAmount(hashTags)) {
     hashTagInputElement.setCustomValidity(`Количество хэштегов не должно превышать ${HASH_TAG_MAX}. Пожалуйста, удалите ${hashTags.length - HASH_TAG_MAX}`);
     window.utils.higlightElement(hashTagInputElement, OUTLINE_COLOR);
   } else if (!checkHashTagsValidity(hashTags)) {
@@ -165,6 +191,7 @@ const hashTagInputHandler = () => {
     window.utils.higlightElement(hashTagInputElement, OUTLINE_COLOR);
   } else {
     hashTagInputElement.setCustomValidity(``);
+    window.utils.resetElementStyles(hashTagInputElement);
   }
 
   hashTagInputElement.reportValidity();

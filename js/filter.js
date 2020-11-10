@@ -37,7 +37,7 @@ const renderFilter = (targetId) => {
 
 const applyFilter = window.debounce(renderFilter);
 
-const filtersClickHandler = (evt) => {
+const сlickHandler = (evt) => {
   filtersFormElement.children[currentFilterIndex].classList.remove(`img-filters__button--active`);
   evt.target.classList.add(`img-filters__button--active`);
   currentFilterIndex = Array.from(evt.target.parentNode.children).indexOf(evt.target);
@@ -45,5 +45,5 @@ const filtersClickHandler = (evt) => {
 };
 
 window.filters = {
-  filtersClickHandler
+  сlickHandler
 };

@@ -10,7 +10,7 @@ const renderPicturesList = (picturesList) => {
   const fragment = document.createDocumentFragment();
 
   for (let picture of picturesList) {
-    fragment.appendChild(window.picture.renderPictureElement(picture));
+    fragment.appendChild(window.picture.renderElement(picture));
   }
 
   picturesListElement.appendChild(fragment);

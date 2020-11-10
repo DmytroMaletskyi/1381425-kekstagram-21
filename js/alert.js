@@ -8,20 +8,18 @@ const errorTitleElement = errorAlertElement.querySelector(`.error__title`);
 const errorButtonElement = errorAlertElement.querySelector(`.error__button`);
 
 const renderAlert = (text) => {
-  const main = document.querySelector(`main`);
-
   const alertElement = document.createElement(`div`);
-  const alertText = document.createElement(`p`);
+  const alertTextElement = document.createElement(`p`);
 
   alertElement.style = `position: absolute; z-index: 5; top: 0; left: 0; right: 0; background-color: red; display: flex; justify-content: center; align-items: center`;
-  alertText.style = `color: white`;
-  alertText.textContent = text;
+  alertTextElement.style = `color: white`;
+  alertTextElement.textContent = text;
 
-  alertElement.appendChild(alertText);
-  main.appendChild(alertElement);
+  alertElement.appendChild(alertTextElement);
+  mainElement.appendChild(alertElement);
 
   setTimeout(() => {
-    main.removeChild(alertElement);
+    mainElement.removeChild(alertElement);
   }, 5000);
 };
 

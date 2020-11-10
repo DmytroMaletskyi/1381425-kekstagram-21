@@ -20,21 +20,21 @@ const cleanCommentsList = () => {
 
 const renderPictureComment = (comment) => {
   const commentElement = document.createElement(`li`);
-  const commentAvatar = document.createElement(`img`);
-  const commentText = document.createElement(`p`);
+  const commentAvatarElement = document.createElement(`img`);
+  const commentTextElement = document.createElement(`p`);
 
-  commentAvatar.classList.add(`social__picture`);
-  commentAvatar.src = comment.avatar;
-  commentAvatar.alt = comment.name;
-  commentAvatar.width = `35`;
-  commentAvatar.height = `35`;
+  commentAvatarElement.classList.add(`social__picture`);
+  commentAvatarElement.src = comment.avatar;
+  commentAvatarElement.alt = comment.name;
+  commentAvatarElement.width = `35`;
+  commentAvatarElement.height = `35`;
 
-  commentText.classList.add(`social__text`);
-  commentText.textContent = comment.message;
+  commentTextElement.classList.add(`social__text`);
+  commentTextElement.textContent = comment.message;
 
   commentElement.classList.add(`social__comment`);
-  commentElement.appendChild(commentAvatar);
-  commentElement.appendChild(commentText);
+  commentElement.appendChild(commentAvatarElement);
+  commentElement.appendChild(commentTextElement);
 
   return commentElement;
 };

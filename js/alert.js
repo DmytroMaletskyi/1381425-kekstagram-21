@@ -33,15 +33,15 @@ const successEscapeHandler = (evt) => {
   window.utils.isEscapeEvent(evt, closeSuccessWindow);
 };
 
-const successOutclickHandler = (evt) => {
-  window.utils.isElementOutclicked(evt, successAlertElement, closeSuccessWindow);
+const successOutClickHandler = (evt) => {
+  window.utils.isElementOutClicked(evt, successAlertElement, closeSuccessWindow);
 };
 
 const closeSuccessWindow = () => {
   mainElement.removeChild(successAlertElement);
   successButtonElement.removeEventListener(`click`, successButtonClickHandler);
   document.removeEventListener(`keydown`, successEscapeHandler);
-  document.removeEventListener(`click`, successOutclickHandler);
+  document.removeEventListener(`click`, successOutClickHandler);
 };
 
 const renderSuccessAlert = () => {
@@ -49,7 +49,7 @@ const renderSuccessAlert = () => {
 
   successButtonElement.addEventListener(`click`, successButtonClickHandler);
   document.addEventListener(`keydown`, successEscapeHandler);
-  document.addEventListener(`click`, successOutclickHandler);
+  document.addEventListener(`click`, successOutClickHandler);
 };
 
 const errorButtonClickHandler = () => {
@@ -61,7 +61,7 @@ const errorEscapeHandler = (evt) => {
 };
 
 const errorOutclickHandler = (evt) => {
-  window.utils.isElementOutclicked(evt, errorAlertElement, closeErrorWindow);
+  window.utils.isElementOutClicked(evt, errorAlertElement, closeErrorWindow);
 };
 
 const closeErrorWindow = () => {

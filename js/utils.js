@@ -15,7 +15,7 @@ const isEscapeEvent = (evt, action) => {
   }
 };
 
-const isElementOutclicked = (evt, element, action) => {
+const isElementOutClicked = (evt, element, action) => {
   if (evt.target === element) {
     action();
   }
@@ -37,7 +37,7 @@ window.utils = {
   getRandomIndex,
   getRandomInt,
   isEscapeEvent,
-  isElementOutclicked,
+  isElementOutClicked,
   higlightElement,
   resetElementStyles,
   removeAllEventListeners

@@ -16,9 +16,7 @@ const prepareRandomPhotosList = () => {
 
 const prepareSortedPhotosList = () => {
   const clonedLoadedPicturesData = JSON.parse(JSON.stringify(window.loadedPicturesData));
-  const sortedList = clonedLoadedPicturesData.sort((next, prev) => prev.comments.length - next.comments.length);
-
-  return sortedList;
+  return clonedLoadedPicturesData.sort((next, prev) => prev.comments.length - next.comments.length);
 };
 
 const renderFilter = (targetId) => {

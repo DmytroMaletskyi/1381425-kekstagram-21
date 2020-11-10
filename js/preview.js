@@ -12,9 +12,7 @@ const fullSizePictureCaptionElement = pictureDetailsElement.querySelector(`.soci
 let commentsLoaderButtonElement = pictureDetailsElement.querySelector(`.comments-loader`);
 
 const cleanCommentsList = () => {
-  while (fullSizeCommentsListElement.firstChild) {
-    fullSizeCommentsListElement.removeChild(fullSizeCommentsListElement.firstChild);
-  }
+  fullSizeCommentsListElement.innerHTML = ``;
 };
 
 const renderPictureComment = (comment) => {
@@ -45,7 +43,7 @@ const setDisplayedCommentsAmount = () => {
 const appendMoreComments = (commentsList) => {
   const fragment = document.createDocumentFragment();
 
-  if (commentsList.length < 5) {
+  if (commentsList.length <= 5) {
     for (let comment of commentsList) {
       fragment.appendChild(renderPictureComment(comment));
       commentsLoaderButtonElement.classList.add(`hidden`);

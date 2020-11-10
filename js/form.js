@@ -149,13 +149,9 @@ const effectsListClickHandler = (evt) => {
     imagePreviewElement.classList.add(currentEffect);
     effectLevel = DEFAULT_EFFECT_LEVEL;
     setEffectLevel(effectLevel);
-  } else {
-    currentEffect = ``;
-  }
-
-  if (currentEffect !== ``) {
     effectLevelSliderElement.classList.remove(`hidden`);
   } else {
+    currentEffect = ``;
     effectLevelSliderElement.classList.add(`hidden`);
   }
 };

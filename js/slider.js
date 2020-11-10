@@ -5,7 +5,7 @@ const effectLevelBarElement = effectLevelSliderElement.querySelector(`.effect-le
 const effectLevelPinElement = effectLevelSliderElement.querySelector(`.effect-level__pin`);
 
 const calculateEffectLevel = (shiftX) => {
-  const effectLevel = ((effectLevelPinElement.offsetLeft - shiftX) * 100 / effectLevelBarElement.offsetWidth).toFixed(0);
+  let effectLevel = ((effectLevelPinElement.offsetLeft - shiftX) * 100 / effectLevelBarElement.offsetWidth).toFixed(0);
 
   if (effectLevel > 100) {
     effectLevel = 100;

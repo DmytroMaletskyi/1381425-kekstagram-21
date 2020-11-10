@@ -11,5 +11,5 @@ const successLoadHandler = (picturesData) => {
   filtersElement.classList.remove(`img-filters--inactive`);
 };
 
-window.backend.loadPhotos(successLoadHandler, window.alert.renderAlert);
+window.backend.loadPhotos(successLoadHandler, window.alertsRendering.renderAlert);
 

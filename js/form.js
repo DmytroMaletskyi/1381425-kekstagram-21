@@ -84,7 +84,7 @@ const loadModalOpenHandler = (evt) => {
     imageUploadFormElement.addEventListener(`submit`, imageSubmitHandler);
     document.addEventListener(`keydown`, modalEscapeHandler);
   } else {
-    window.alert.renderAlert(`Неправильный формат изображения!`);
+    window.alertsRendering.renderAlert(`Неправильный формат изображения!`);
     imageUploadFormElement.reset();
   }
 };
@@ -229,13 +229,13 @@ const resetFormFields = () => {
 const successfulUploadHandler = () => {
   loadModalCloseHandler();
   resetFormFields();
-  window.alert.renderSuccessAlert();
+  window.alertsRendering.renderSuccessAlert();
 };
 
 const failedUploadHandler = (errorText) => {
   loadModalCloseHandler();
   resetFormFields();
-  window.alert.renderErrorAlert(errorText);
+  window.alertsRendering.renderErrorAlert(errorText);
 };
 
 const imageSubmitHandler = (evt) => {

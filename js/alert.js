@@ -80,7 +80,7 @@ const renderErrorAlert = (text) => {
   document.addEventListener(`click`, errorOutclickHandler);
 };
 
-window.alert = {
+window.alertsRendering = {
   renderAlert,
   renderSuccessAlert,
   renderErrorAlert

@@ -7,11 +7,21 @@ const DEFAULT_EFFECT_LEVEL = 100;
 const HASH_TAG_PATTERN = /^#[A-Za-z0-9]{1,19}$/;
 const HASH_TAG_MAX = 5;
 const EFFECTS = {
-  'effects__preview--chrome': (effectLevel) => `grayscale(${effectLevel / 100})`,
-  'effects__preview--sepia': (effectLevel) => `sepia(${effectLevel / 100})`,
-  'effects__preview--marvin': (effectLevel) => `invert(${effectLevel}%)`,
-  'effects__preview--phobos': (effectLevel) => `blur(${effectLevel * 3 / 100}px)`,
-  'effects__preview--heat': (effectLevel) => `brightness(${effectLevel * 2 / 100 + 1})`
+  'effects__preview--chrome': (effectLevel) => {
+    return `grayscale(${effectLevel / 100})`;
+  },
+  'effects__preview--sepia': (effectLevel) => {
+    return `sepia(${effectLevel / 100})`;
+  },
+  'effects__preview--marvin': (effectLevel) => {
+    return `invert(${effectLevel}%)`;
+  },
+  'effects__preview--phobos': (effectLevel) => {
+    return `blur(${effectLevel * 3 / 100}px)`;
+  },
+  'effects__preview--heat': (effectLevel) => {
+    return `brightness(${effectLevel * 2 / 100 + 1})`;
+  }
 };
 
 let scaleValue = DEFAULT_SCALE;
@@ -148,7 +158,9 @@ const effectsListClickHandler = (evt) => {
   }
 };
 
-const checkHashTagsAmount = (hashTags) => ((hashTags.length <= HASH_TAG_MAX) ? true : false);
+const checkHashTagsAmount = (hashTags) => {
+  return ((hashTags.length <= HASH_TAG_MAX) ? true : false);
+};
 
 const checkHashTagsValidity = (hashTags) => {
   for (let hashTag of hashTags) {
@@ -161,7 +173,10 @@ const checkHashTagsValidity = (hashTags) => {
 };
 
 const countRepetitionsInArray = (array, targetItem) => {
-  return array.filter((arrayItem) => arrayItem.toLowerCase() === targetItem).length;
+  return array.filter((arrayItem) => {
+    return arrayItem.toLowerCase() === targetItem;
+  }
+  ).length;
 };
 
 const checkHashTagsDuplication = (hashTags) => {

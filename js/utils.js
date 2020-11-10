@@ -1,8 +1,12 @@
 'use strict';
 
-const getRandomIndex = (arrayLength) => Math.floor(Math.random() * arrayLength);
+const getRandomIndex = (arrayLength) => {
+  return Math.floor(Math.random() * arrayLength);
+};
 
-const getRandomInt = (min = 15, max = 200) => Math.floor(Math.random() * (max - min + 1)) + min;
+const getRandomInt = (min = 15, max = 200) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 const isEscapeEvent = (evt, action) => {
   if (evt.key === `Escape`) {

@@ -1,5 +1,7 @@
 'use strict';
 
+const DOWNLOAD_URL = `https://21.javascript.pages.academy/kekstagram/data`;
+const UPLOAD_URL = `https://21.javascript.pages.academy/kekstagram`;
 const TIMEOUT = 10000;
 const RESPONSE_CODES = {
   'OK': 200,
@@ -51,28 +53,40 @@ const handleRequest = (xhr, successHandler, errorHandler, timeout) => {
   xhr.timeout = timeout;
 };
 
-const loadPhotos = (successHandler, errorHandler) => {
-  const URL = `https://21.javascript.pages.academy/kekstagram/data`;
-
+const prepareXhrRequest = (url, method, successHandler, errorHandler, timeout) => {
   const xhr = new XMLHttpRequest();
 
-  handleRequest(xhr, successHandler, errorHandler, TIMEOUT);
+  handleRequest(xhr, successHandler, errorHandler, timeout);
 
-  xhr.open(`GET`, URL);
+  xhr.open(method, url);
+
+  return xhr;
+};
+
+const loadPhotos = (successHandler, errorHandler) => {
+  // const url = `https://21.javascript.pages.academy/kekstagram/data`;
+
+  // const xhr = new XMLHttpRequest();
+
+  // handleRequest(xhr, successHandler, errorHandler, TIMEOUT);
+
+  // xhr.open(`GET`, url);
+  const xhr = prepareXhrRequest(DOWNLOAD_URL, `GET`, successHandler, errorHandler, TIMEOUT);
 
   xhr.send();
 };
 
-const uploadPhoto = (data, successHandler, errorHandler) => {
-  const URL = `https://21.javascript.pages.academy/kekstagram`;
+const uploadPhoto = (photoData, successHandler, errorHandler) => {
+  // const url = `https://21.javascript.pages.academy/kekstagram`;
 
-  const xhr = new XMLHttpRequest();
+  // const xhr = new XMLHttpRequest();
 
-  handleRequest(xhr, successHandler, errorHandler, TIMEOUT);
+  // handleRequest(xhr, successHandler, errorHandler, TIMEOUT);
 
-  xhr.open(`POST`, URL);
+  // xhr.open(`POST`, url);
+  const xhr = prepareXhrRequest(UPLOAD_URL, `POST`, successHandler, errorHandler, TIMEOUT);
 
-  xhr.send(data);
+  xhr.send(photoData);
 };
 
 window.backend = {

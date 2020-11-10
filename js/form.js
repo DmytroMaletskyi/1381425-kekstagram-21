@@ -1,5 +1,7 @@
 'use strict';
 
+const ESCAPE_KEY = `Escape`;
+const NO_EFFECT_VALUE = `none`;
 const FILE_TYPES = [`gif`, `jpg`, `jpeg`, `png`];
 const OUTLINE_COLOR = `rgba(255, 0, 0, .5)`;
 const DEFAULT_SCALE = 100;
@@ -142,7 +144,7 @@ const resetPreviewEffectClasses = () => {
 const effectsListClickHandler = (evt) => {
   resetPreviewEffectClasses();
 
-  if (evt.target.value !== `none`) {
+  if (evt.target.value !== NO_EFFECT_VALUE) {
     currentEffect = `effects__preview--${evt.target.value}`;
     imagePreviewElement.classList.add(currentEffect);
     effectLevel = DEFAULT_EFFECT_LEVEL;
@@ -213,7 +215,7 @@ const hashTagInputHandler = () => {
 };
 
 const modalEscapeHandler = (evt) => {
-  if (evt.key === `Escape`) {
+  if (evt.key === ESCAPE_KEY) {
     evt.preventDefault();
     if (hashTagInputElement !== document.activeElement && commentsFieldElement !== document.activeElement) {
       loadModalCloseHandler();

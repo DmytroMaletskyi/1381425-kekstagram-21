@@ -1,5 +1,8 @@
 'use strict';
 
+const ESCAPE_KEY = `Escape`;
+const COMMENTS_DEFAULT_AMOUNT = 5;
+
 const body = document.querySelector(`body`);
 const pictureDetailsElement = document.querySelector(`.big-picture`);
 const bigPictureCancelButtonElement = pictureDetailsElement.querySelector(`.big-picture__cancel`);
@@ -43,13 +46,13 @@ const setDisplayedCommentsAmount = () => {
 const appendMoreComments = (commentsList) => {
   const fragment = document.createDocumentFragment();
 
-  if (commentsList.length <= 5) {
+  if (commentsList.length <= COMMENTS_DEFAULT_AMOUNT) {
     for (let comment of commentsList) {
       fragment.appendChild(renderPictureComment(comment));
       commentsLoaderButtonElement.classList.add(`hidden`);
     }
   } else {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < COMMENTS_DEFAULT_AMOUNT; i++) {
       fragment.appendChild(renderPictureComment(commentsList.shift()));
     }
   }
@@ -94,7 +97,7 @@ const closePreviewWindow = () => {
 };
 
 const previewEscapeHandler = (evt) => {
-  if (evt.key === `Escape`) {
+  if (evt.key === ESCAPE_KEY) {
     evt.preventDefault();
     closePreviewWindow();
   }

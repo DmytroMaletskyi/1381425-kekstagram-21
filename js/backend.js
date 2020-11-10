@@ -1,6 +1,12 @@
 'use strict';
 
 const TIMEOUT = 10000;
+const RESPONSE_CODES = {
+  'OK': 200,
+  'Bad Request': 400,
+  'Unauthorized': 401,
+  'Not Found': 404
+};
 
 const handleRequest = (xhr, successHandler, errorHandler, timeout) => {
   xhr.responseType = `json`;
@@ -8,19 +14,19 @@ const handleRequest = (xhr, successHandler, errorHandler, timeout) => {
   xhr.addEventListener(`load`, () => {
     let error;
     switch (xhr.status) {
-      case 200:
+      case RESPONSE_CODES[`OK`]:
         successHandler(xhr.response);
         break;
 
-      case 400:
+      case RESPONSE_CODES[`Bad Request`]:
         error = `Неверный запрос`;
         break;
 
-      case 401:
+      case RESPONSE_CODES[`Unauthorized`]:
         error = `Пользователь не авторизован`;
         break;
 
-      case 404:
+      case RESPONSE_CODES[`Not Found`]:
         error = `Ничего не найдено`;
         break;
 

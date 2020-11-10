@@ -1,5 +1,7 @@
 'use strict';
 
+const ESCAPE_KEY = `Escape`;
+
 const getRandomIndex = (arrayLength) => {
   return Math.floor(Math.random() * arrayLength);
 };
@@ -9,7 +11,7 @@ const getRandomInt = (min = 15, max = 200) => {
 };
 
 const isEscapeEvent = (evt, action) => {
-  if (evt.key === `Escape`) {
+  if (evt.key === ESCAPE_KEY) {
     evt.preventDefault();
     action();
   }

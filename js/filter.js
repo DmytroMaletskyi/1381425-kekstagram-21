@@ -1,5 +1,11 @@
 'use strict';
 
+const FILTERS = {
+  'default': `filter-default`,
+  'random': `filter-random`,
+  'discussed': `filter-discussed`
+};
+
 const filtersFormElement = document.querySelector(`.img-filters__form`);
 
 let currentFilterIndex = 0;
@@ -21,15 +27,15 @@ const prepareSortedPhotosList = () => {
 
 const renderFilter = (targetId) => {
   switch (targetId) {
-    case `filter-default`:
+    case FILTERS[`default`]:
       window.gallery.renderPicturesList(window.loadedPicturesData);
       break;
 
-    case `filter-random`:
+    case FILTERS[`random`]:
       window.gallery.renderPicturesList(prepareRandomPhotosList());
       break;
 
-    case `filter-discussed`:
+    case FILTERS[`discussed`]:
       window.gallery.renderPicturesList(prepareSortedPhotosList());
       break;
   }

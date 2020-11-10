@@ -64,26 +64,12 @@ const prepareXhrRequest = (url, method, successHandler, errorHandler, timeout) =
 };
 
 const loadPhotos = (successHandler, errorHandler) => {
-  // const url = `https://21.javascript.pages.academy/kekstagram/data`;
-
-  // const xhr = new XMLHttpRequest();
-
-  // handleRequest(xhr, successHandler, errorHandler, TIMEOUT);
-
-  // xhr.open(`GET`, url);
   const xhr = prepareXhrRequest(DOWNLOAD_URL, `GET`, successHandler, errorHandler, TIMEOUT);
 
   xhr.send();
 };
 
 const uploadPhoto = (photoData, successHandler, errorHandler) => {
-  // const url = `https://21.javascript.pages.academy/kekstagram`;
-
-  // const xhr = new XMLHttpRequest();
-
-  // handleRequest(xhr, successHandler, errorHandler, TIMEOUT);
-
-  // xhr.open(`POST`, url);
   const xhr = prepareXhrRequest(UPLOAD_URL, `POST`, successHandler, errorHandler, TIMEOUT);
 
   xhr.send(photoData);

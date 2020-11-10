@@ -161,7 +161,7 @@ const effectsListClickHandler = (evt) => {
 };
 
 const checkHashTagsAmount = (hashTags) => {
-  return ((hashTags.length <= HASH_TAG_MAX) ? true : false);
+  return hashTags.length <= HASH_TAG_MAX;
 };
 
 const checkHashTagsValidity = (hashTags) => {

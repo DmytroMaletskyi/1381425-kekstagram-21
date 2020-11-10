@@ -47,10 +47,10 @@ const appendMoreComments = (commentsList) => {
   const fragment = document.createDocumentFragment();
 
   if (commentsList.length <= COMMENTS_DEFAULT_AMOUNT) {
-    for (let comment of commentsList) {
+    commentsList.forEach((comment) => {
       fragment.appendChild(renderPictureComment(comment));
-      commentsLoaderButtonElement.classList.add(`hidden`);
-    }
+    });
+    commentsLoaderButtonElement.classList.add(`hidden`);
   } else {
     for (let i = 0; i < COMMENTS_DEFAULT_AMOUNT; i++) {
       fragment.appendChild(renderPictureComment(commentsList.shift()));

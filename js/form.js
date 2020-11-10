@@ -160,13 +160,13 @@ const checkHashTagsValidity = (hashTags) => {
   return true;
 };
 
-const countInArray = (array, what) => {
-  return array.filter((item) => item.toLowerCase() === what).length;
+const countRepetitionsInArray = (array, targetItem) => {
+  return array.filter((arrayItem) => arrayItem.toLowerCase() === targetItem).length;
 };
 
 const checkHashTagsDuplication = (hashTags) => {
   for (let hashTag of hashTags) {
-    if (countInArray(hashTags, hashTag.toLowerCase()) > 1) {
+    if (countRepetitionsInArray(hashTags, hashTag.toLowerCase()) > 1) {
       return false;
     }
   }

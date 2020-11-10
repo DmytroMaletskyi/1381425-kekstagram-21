@@ -5,18 +5,18 @@ const filtersFormElement = document.querySelector(`.img-filters__form`);
 let currentFilterIndex = 0;
 
 const prepareRandomPhotosList = () => {
-  const clonedLoadedData = JSON.parse(JSON.stringify(window.loadedData));
+  const clonedLoadedPicturesData = JSON.parse(JSON.stringify(window.loadedPicturesData));
   const randomPhotosList = [];
   for (let i = 0; i < 10; i++) {
-    randomPhotosList.push(clonedLoadedData.splice(window.utils.getRandomIndex(clonedLoadedData.length), 1)[0]);
+    randomPhotosList.push(clonedLoadedPicturesData.splice(window.utils.getRandomIndex(clonedLoadedPicturesData.length), 1)[0]);
   }
 
   return randomPhotosList;
 };
 
 const prepareSortedPhotosList = () => {
-  const clonedLoadedData = JSON.parse(JSON.stringify(window.loadedData));
-  const sortedList = clonedLoadedData.sort((next, prev) => prev.comments.length - next.comments.length);
+  const clonedLoadedPicturesData = JSON.parse(JSON.stringify(window.loadedPicturesData));
+  const sortedList = clonedLoadedPicturesData.sort((next, prev) => prev.comments.length - next.comments.length);
 
   return sortedList;
 };
@@ -24,7 +24,7 @@ const prepareSortedPhotosList = () => {
 const renderFilter = (targetId) => {
   switch (targetId) {
     case `filter-default`:
-      window.gallery.renderPicturesList(window.loadedData);
+      window.gallery.renderPicturesList(window.loadedPicturesData);
       break;
 
     case `filter-random`:

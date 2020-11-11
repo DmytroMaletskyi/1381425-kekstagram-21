@@ -150,10 +150,11 @@ const effectsListClickHandler = (evt) => {
     effectLevel = DEFAULT_EFFECT_LEVEL;
     setEffectLevel(effectLevel);
     effectLevelSliderElement.classList.remove(`hidden`);
-  } else {
-    currentEffect = ``;
-    effectLevelSliderElement.classList.add(`hidden`);
+    return;
   }
+
+  currentEffect = ``;
+  effectLevelSliderElement.classList.add(`hidden`);
 };
 
 const checkHashTagsAmount = (hashTags) => {
@@ -211,11 +212,16 @@ const hashTagInputHandler = () => {
 };
 
 const modalEscapeHandler = (evt) => {
-  if (evt.key === ESCAPE_KEY) {
-    evt.preventDefault();
-    if (hashTagInputElement !== document.activeElement && commentsFieldElement !== document.activeElement) {
-      loadModalCloseHandler();
-    }
+  if (evt.key !== ESCAPE_KEY) {
+    return;
+  }
+
+  evt.preventDefault();
+  if (
+    hashTagInputElement !== document.activeElement &&
+    commentsFieldElement !== document.activeElement
+  ) {
+    loadModalCloseHandler();
   }
 };
 

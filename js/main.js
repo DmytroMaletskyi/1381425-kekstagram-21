@@ -7,7 +7,7 @@ const filtersFormElement = filtersElement.querySelector(`.img-filters__form`);
 const successLoadHandler = (picturesData) => {
   window.loadedPicturesData = picturesData;
   window.gallery.renderPicturesList(picturesData);
-  filtersFormElement.addEventListener(`click`, window.filters.сlickHandler);
+  filtersFormElement.addEventListener(`click`, window.filters.clickHandler);
   filtersElement.classList.remove(`img-filters--inactive`);
 };
 

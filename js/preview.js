@@ -103,7 +103,7 @@ const previewEscapeHandler = (evt) => {
   }
 };
 
-const сlickHandler = (picture) => {
+const clickHandler = (picture) => {
   renderPictureDetailsElement(picture);
   body.classList.add(`modal-open`);
   pictureDetailsElement.classList.remove(`hidden`);
@@ -115,5 +115,5 @@ const сlickHandler = (picture) => {
 window.preview = {
   renderPictureDetailsElement,
 
-  сlickHandler
+  clickHandler
 };

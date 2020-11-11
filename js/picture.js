@@ -9,7 +9,7 @@ const renderElement = (picture) => {
   pictureElement.querySelector(`.picture__likes`).textContent = picture.likes;
   pictureElement.querySelector(`.picture__comments`).textContent = picture.comments.length;
 
-  pictureElement.addEventListener(`click`, window.preview.сlickHandler.bind(null, picture));
+  pictureElement.addEventListener(`click`, window.preview.clickHandler.bind(null, picture));
 
   return pictureElement;
 };
